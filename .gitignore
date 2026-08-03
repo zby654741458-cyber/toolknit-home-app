@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+dist/
+
+# Tauri build output
+src-tauri/target/
+src-tauri/gen/schemas/*.json
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Backup / temp files
+*.bak
+*.mjs.timestamp-*
+*.timestamp-*.mjs
