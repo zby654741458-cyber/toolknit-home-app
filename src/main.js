@@ -1645,3 +1645,52 @@
         renderFavorites();
         renderRecent();
       });
+      // ===== 在线更新 (GitHub Releases) =====
+      const isTauriEnv = typeof window !== 'undefined' && !!window.__TAURI_INTERNALS__;
+      const checkUpdateBtn = document.getElementById('checkUpdateBtn');
+      const updateStatus = document.getElementById('updateStatus');
+
+      function setUpdateStatus(text) {
+        if (updateStatus) updateStatus.textContent = text;
+      }
+
+      async function checkForUpdates(manual = false) {
+        if (!isTauriEnv) {
+          if (manual) setUpdateStatus('浏览器预览模式，无法检查更新');
+          return;
+        }
+        try {
+          setUpdateStatus('正在检查更新...');
+          const { check } = await import('@tauri-apps/plugin-updater');
+          const update = await check();
+          if (!update) {
+            setUpdateStatus('当前已是最新版本');
+            return;
+          }
+          setUpdateStatus(`发现新版本 v${update.version}`);
+          const confirmed = window.confirm
+            ? window.confirm(`发现新版本 v${update.version}，是否立即下载并安装？`)
+            : true;
+          if (confirmed) {
+            setUpdateStatus('正在下载更新...');
+            await update.downloadAndInstall();
+            setUpdateStatus('更新完成，请重启应用');
+            window.confirm && window.confirm('更新已完成，点击确定重启应用');
+            setTimeout(() => { location.reload(); }, 1500);
+          } else {
+            setUpdateStatus(`发现新版本 v${update.version}，已取消`);
+          }
+        } catch (e) {
+          console.error('Update check failed:', e);
+          setUpdateStatus('检查更新失败：' + (e?.message || e));
+        }
+      }
+
+      if (checkUpdateBtn) {
+        checkUpdateBtn.addEventListener('click', () => checkForUpdates(true));
+      }
+
+      // 启动时自动检查（延迟 3 秒，不打扰）
+      if (isTauriEnv) {
+        setTimeout(() => { checkForUpdates(false); }, 3000);
+      }

@@ -42,6 +42,7 @@
     "icon": [
       "icons/icon.ico"
     ],
+    "createUpdaterArtifacts": true,
     "windows": {
       "nsis": {
         "installMode": "both",
@@ -50,6 +51,17 @@
         "displayLanguageSelector": true,
         "template": "./windows/installer.nsi",
         "installerHooks": "./windows/hooks.nsh"
+      }
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDlDNDc1N0RDQzNGRUYyMjIKUldRaTh2N0QzRmRIbkJCajBSZkYzbkhKL0ZXWmN3UFlILzZFeU02WU8zVUxDU1FzSlA5bkRMbXkK",
+      "endpoints": [
+        "https://github.com/zby654741458-cyber/toolknit-home-app/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "both"
       }
     }
   }

@@ -1286,7 +1286,8 @@
     "browse": "浏览",
     "clear": "清除",
     "notSet": "未设置",
-    "promptStoragePath": "请输入默认存储路径："
+    "promptStoragePath": "请输入默认存储路径：",
+    "checkUpdate": "检查更新"
   },
   "legal": {
     "title": "法律声明",

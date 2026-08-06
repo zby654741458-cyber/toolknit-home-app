@@ -1475,6 +1475,12 @@
         color: rgba(255, 255, 255, 0.75);
       }
 
+      .settings-update-status {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        flex: 1;
+      }
+
       .settings-path {
         font-size: 13px;
         color: rgba(255, 255, 255, 0.75);

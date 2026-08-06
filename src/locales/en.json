@@ -1286,7 +1286,8 @@
     "browse": "Browse",
     "clear": "Clear",
     "notSet": "Not set",
-    "promptStoragePath": "Enter default storage path:"
+    "promptStoragePath": "Enter default storage path:",
+    "checkUpdate": "Check Updates"
   },
   "legal": {
     "title": "Legal Notice",
