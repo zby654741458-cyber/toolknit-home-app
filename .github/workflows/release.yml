@@ -87,15 +87,13 @@ jobs:
 
       - name: Generate latest.json for updater
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          REPO="${{ github.repository }}"
-          TAG="${{ github.ref_name }}"
           python3 - <<'PY'
-          import json, glob, os, hashlib, base64
+          import json, glob, os
 
-          version = os.environ.get("VERSION")
-          repo = os.environ.get("REPO")
-          tag = os.environ.get("TAG")
+          # 直接读 GitHub Actions 默认环境变量(无需在父 shell 设置 ENV)
+          version = os.environ["GITHUB_REF_NAME"].lstrip("v")
+          repo = os.environ["GITHUB_REPOSITORY"]
+          tag = os.environ["GITHUB_REF_NAME"]
 
           platforms = {}
 
