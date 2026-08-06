@@ -61,7 +61,7 @@
         "https://github.com/zby654741458-cyber/toolknit-home-app/releases/latest/download/latest.json"
       ],
       "windows": {
-        "installMode": "both"
+        "installMode": "passive"
       }
     }
   }
